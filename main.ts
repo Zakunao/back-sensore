@@ -9,10 +9,12 @@ let baseFrequency = 440
 let TONE_DURATION_MS = 5
 // Flag to track tilt state
 basic.forever(function () {
-    pitch = input.rotation(Rotation.Pitch)
+    // Get accelerometer values
+    let acceleration = input.acceleration(Dimension.Y)
+    pitch = acceleration
     roll = input.rotation(Rotation.Roll)
     // Check if the sensor is tilting
-    if (pitch < 200) {
+    if (pitch < 950) {
         isTilting = true
     } else {
         isTilting = false
@@ -23,7 +25,7 @@ basic.forever(function () {
         // Adjust this factor for sensitivity
         pitchShift = Math.floor(pitch / 10)
         // Calculate the new frequency
-        newFrequency = baseFrequency * pitchShift
+        newFrequency = baseFrequency + pitchShift
         // Play the tone with the specified duration
         music.playTone(newFrequency, TONE_DURATION_MS)
     }
