@@ -14,7 +14,7 @@ basic.forever(function () {
     pitch = acceleration
     roll = input.rotation(Rotation.Roll)
     // Check if the sensor is tilting
-    if (pitch < 950) {
+    if (pitch < 940) {
         isTilting = true
     } else {
         isTilting = false
