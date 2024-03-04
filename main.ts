@@ -23,7 +23,7 @@ basic.forever(function () {
     if (isTilting) {
         // Calculate the pitch shift based on tilt
         // Adjust this factor for sensitivity
-        pitchShift = Math.floor(pitch / 10)
+        pitchShift = Math.floor(pitch / 50)
         // Calculate the new frequency
         newFrequency = baseFrequency + pitchShift
         // Play the tone with the specified duration
