@@ -3,18 +3,20 @@ let pitchShift = 0
 let isTilting = false
 let roll = 0
 let pitch = 0
+let acceleration = 0
 // Base frequency (A4 note)
 let baseFrequency = 440
 // Tone duration in milliseconds
 let TONE_DURATION_MS = 5
 // Flag to track tilt state
 basic.forever(function () {
+    serial.writeValue("x", input.acceleration(Dimension.Y))
     // Get accelerometer values
-    let acceleration = input.acceleration(Dimension.Y)
+    acceleration = input.acceleration(Dimension.Y)
     pitch = acceleration
     roll = input.rotation(Rotation.Roll)
     // Check if the sensor is tilting
-    if (pitch < 940) {
+    if (Math.abs(pitch) < 960) {
         isTilting = true
     } else {
         isTilting = false
